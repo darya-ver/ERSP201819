@@ -130,4 +130,16 @@ bool dataVector::readDirectory( const string & directoryName ) {
 /*
  * Writes the vector to an outfile
  */
-bool writeToFile( const ofstream & outfile ) {
+bool dataVector::writeToFile( const ofstream & outfile ) {
+    
+    //Iterate through entire vector
+    for( int i = 0; i < VECSIZE; i++ ) {
+        dataNode * currNode = allData[i];
+        currNode->writeNode( outfile );
+    }
+
+    return true;
+
+}
+        
+        
