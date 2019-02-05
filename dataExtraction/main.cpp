@@ -6,7 +6,8 @@ int main() {
   
   const string dirName = "./testingData";
 
-  dataVector::readDirectory( dirName );
+  dataVector vect = dataVector();
+  vect.readDirectory( dirName );
 
   return 0;
 }

@@ -3,6 +3,24 @@
  * Description: Function implemenations for the dataVector class
  */
 
+#include "dataVector.hpp"
+
+dataVector::dataVector() {
+  
+      const string testNames[VECSIZE] = { "fillseq", "fillsync",
+        "fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
+        "readreverse", "compact", "readrandom", "readseq", "readreverse",
+        "fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
+
+			//Create node for each test
+			for( int i = 0; i < VECSIZE; i++ ) {
+                                dataNode * tempNode = new dataNode(testNames[i]);
+				allData.push_back(tempNode);
+			}
+}
+
+
+
 
 /*
  * Description: Gets data from file, and adds it into our vector
@@ -15,6 +33,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
         //Line number we've reached in the file
         unsigned int lineNum = 0; 
+        string fileName = directoryName;
 
         //Adds backslash if necessary
         if( directoryName.back() != '/' ) {
@@ -39,7 +58,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
         //Read in lines from the file
         string line;
-        while( getLine( inFile, line ) ) {
+        while( getline( inFile, line ) ) {
             lineNum++;
 
             int vecIndex = 0;
@@ -66,7 +85,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 }
 
                 //Find index of second digit
-                while( !isDigit(line[i]) ) {
+                while( !isdigit(line[i]) ) {
                     i++;
                 }
     
@@ -130,7 +149,7 @@ bool dataVector::readDirectory( const string & directoryName ) {
 /*
  * Writes the vector to an outfile
  */
-bool dataVector::writeToFile( const ofstream & outfile ) {
+bool dataVector::writeToFile( ofstream & outfile ) {
     
     //Iterate through entire vector
     for( int i = 0; i < VECSIZE; i++ ) {

@@ -4,10 +4,11 @@
  * 		for each test.
  */
 
-using namespace std;
 
 #include <string> 
 #include <fstream>
+
+using namespace std;
 
 class dataNode {
 
@@ -77,16 +78,16 @@ class dataNode {
                 /*
                  * Writes data to outfile
                  */
-                void writeNode( const ofstream & outfile ) {
+                void writeNode( ofstream & outfile ) {
                         
                         //Strings to write
                         string testString = "Test Name: " + testName + "\n";
-                        string maxThruStr = "   Max Throughput: " + maxThru + "\n";
-                        string minThruStr = "   Min Throughput: " + minThru + "\n";
-                        string avgThruStr = "   Avg Throughput: " + averageThru + "\n";
-                        string maxBandStr = "   Max BandWidth:  " + maxBand + "\n";
-                        string minBandStr = "   Min BandWidth:  " + minBand + "\n";
-                        string avgBandStr = "   Avg BandWidth:  " + averageBand + "\n";
+                        string maxThruStr = "   Max Throughput: " + to_string(maxThru) + "\n";
+                        string minThruStr = "   Min Throughput: " + to_string(minThru) + "\n";
+                        string avgThruStr = "   Avg Throughput: " + to_string(averageThru) + "\n";
+                        string maxBandStr = "   Max BandWidth:  " + to_string(maxBand) + "\n";
+                        string minBandStr = "   Min BandWidth:  " + to_string(minBand) + "\n";
+                        string avgBandStr = "   Avg BandWidth:  " + to_string(averageBand) + "\n";
                         
                         outfile.write( testString.c_str(), testString.length() );
                         outfile.write( maxThruStr.c_str(), maxThruStr.length() );

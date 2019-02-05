@@ -3,7 +3,6 @@
  * Description: Vector of dataNodes
  */
 
-using namespace std;
 
 #include <vector>
 #include <iterator>
@@ -12,38 +11,48 @@ using namespace std;
 #include "dataNode.hpp"
 #include <iostream>
 #include <dirent.h>
+#include <string>
 
 #define VECSIZE 17
+
+using namespace std;
 
 class dataVector {
 
 	private:
 		//Array with all test names
-		string testNames[17] = {"fillseq", "fillsync",
-			"fillrandom", "overwrite", "readrandom",
-			"readrandom", "readseq", "readreverse",
-			"compact", "readrandom", "readseq", 
-			"readreverse", "fill100k", "crc32c",
-			"snappycomp", "snappyuncomp", 
-			"acquireload"};
+    enum {arrsize = 17};
+		//static const string testNames[arrsize] = { "fillseq", "fillsync",
+    //"fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
+    //"readreverse", "compact", "readrandom", "readseq", "readreverse",
+    //"fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
 
 	public:
 		//Vector of tests 
 		vector<dataNode *> allData;
 
+    bool debug = false;
+
 		//Constructor
-		dataVector() {
+		dataVector(); // {
+      /*
+      const string testNames[arrsize] = { "fillseq", "fillsync",
+        "fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
+        "readreverse", "compact", "readrandom", "readseq", "readreverse",
+        "fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
+
 			//Create node for each test
 			for( int i = 0; i < VECSIZE; i++ ) {
                                 dataNode * tempNode = new dataNode(testnames[i]);
 				allData.push_back(tempNode);
 			}
 		}
+      */
 
 
 		//Destructor, calls delete on every node
 		~dataVector() {
-			for( it = allData.begin(); it != allData.end(); it++ ) {
+			for( auto it = allData.begin(); it != allData.end(); it++ ) {
 				delete *it;
 			}
 		}
@@ -57,5 +66,5 @@ class dataVector {
                 bool readDirectory( const string & directoryName );
 
                 //Write the data to an output file
-                bool writeToFile( const ofstream & outfile);
+                bool writeToFile( ofstream & outfile);
 };
