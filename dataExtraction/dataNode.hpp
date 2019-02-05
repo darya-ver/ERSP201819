@@ -6,7 +6,8 @@
 
 using namespace std;
 
-#include <string>
+#include <string> 
+#include <fstream>
 
 class dataNode {
 
@@ -70,7 +71,32 @@ class dataNode {
                     //Recalculate average
                     elementsBand++;
                     totalBand += bandwidth;
-                    averageThru = totalBand/elementsBand;
+                    averageBand = totalBand/elementsBand;
+                }
+
+                /*
+                 * Writes data to outfile
+                 */
+                void writeNode( const ofstream & outfile ) {
+                        
+                        //Strings to write
+                        string testString = "Test Name: " + testName + "\n";
+                        string maxThruStr = "   Max Throughput: " + maxThru + "\n";
+                        string minThruStr = "   Min Throughput: " + minThru + "\n";
+                        string avgThruStr = "   Avg Throughput: " + averageThru + "\n";
+                        string maxBandStr = "   Max BandWidth:  " + maxBand + "\n";
+                        string minBandStr = "   Min BandWidth:  " + minBand + "\n";
+                        string avgBandStr = "   Avg BandWidth:  " + averageBand + "\n";
+                        
+                        outfile.write( testString.c_str(), testString.length() );
+                        outfile.write( maxThruStr.c_str(), maxThruStr.length() );
+                        outfile.write( minThruStr.c_str(), minThruStr.length() );
+                        outfile.write( avgThruStr.c_str(), avgThruStr.length() );
+                        outfile.write( maxBandStr.c_str(), maxBandStr.length() );
+                        outfile.write( minBandStr.c_str(), minBandStr.length() );
+                        outfile.write( avgBandStr.c_str(), avgBandStr.length() );
+                        outfile.write( "\n", 1 );
+
                 }
 }; 
 

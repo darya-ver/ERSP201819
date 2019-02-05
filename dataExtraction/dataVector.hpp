@@ -9,6 +9,11 @@ using namespace std;
 #include <iterator>
 #include <array>
 #include <ctype.h>
+#include "dataNode.hpp"
+#include <iostream>
+#include <dirent.h>
+
+#define VECSIZE 17
 
 class dataVector {
 
@@ -26,11 +31,10 @@ class dataVector {
 		//Vector of tests 
 		vector<dataNode *> allData;
 
-
 		//Constructor
 		dataVector() {
 			//Create node for each test
-			for( int i = 0; i < 17; i++ ) {
+			for( int i = 0; i < VECSIZE; i++ ) {
                                 dataNode * tempNode = new dataNode(testnames[i]);
 				allData.push_back(tempNode);
 			}
@@ -47,7 +51,7 @@ class dataVector {
 
                 //Gets data from each file
                 bool readFile( const string & directoryName, 
-                               struct dirent * file, ifstream & infile);
+                               struct dirent * file);
 
                 //Loop through all files in a directory
                 bool readDirectory( const string & directoryName );
