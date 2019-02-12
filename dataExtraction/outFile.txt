@@ -1,0 +1,128 @@
+Test Name: fillseq
+   Max Throughput: 2574.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 858.857971
+   Max BandWidth:  43.000000
+   Min BandWidth:  43.000000
+   Avg BandWidth:  43.000000
+
+Test Name: fillsync
+   Max Throughput: 9601134.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 3203578.250000
+   Max BandWidth:  0.000000
+   Min BandWidth:  0.000000
+   Avg BandWidth:  0.000000
+
+Test Name: fillrandom
+   Max Throughput: 6613.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 2206.537598
+   Max BandWidth:  16.700001
+   Min BandWidth:  16.700001
+   Avg BandWidth:  16.700001
+
+Test Name: overwrite
+   Max Throughput: 8966.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 2991.655273
+   Max BandWidth:  12.300000
+   Min BandWidth:  12.300000
+   Avg BandWidth:  12.300000
+
+Test Name: readrandom
+   Max Throughput: 10519.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 3509.839600
+   Max BandWidth:  1000000.000000
+   Min BandWidth:  1000000.000000
+   Avg BandWidth:  1000000.000000
+
+Test Name: readrandom
+   Max Throughput: 8846.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 2951.615234
+   Max BandWidth:  1000000.000000
+   Min BandWidth:  1000000.000000
+   Avg BandWidth:  1000000.000000
+
+Test Name: readseq
+   Max Throughput: 367.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 122.455666
+   Max BandWidth:  301.500000
+   Min BandWidth:  301.500000
+   Avg BandWidth:  301.500000
+
+Test Name: readreverse
+   Max Throughput: 471.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 157.156998
+   Max BandWidth:  234.600006
+   Min BandWidth:  234.600006
+   Avg BandWidth:  234.600021
+
+Test Name: readrandom
+   Max Throughput: 8162.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 2723.387451
+   Max BandWidth:  1000000.000000
+   Min BandWidth:  1000000.000000
+   Avg BandWidth:  1000000.000000
+
+Test Name: readseq
+   Max Throughput: 340.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 113.446663
+   Max BandWidth:  325.299988
+   Min BandWidth:  325.299988
+   Avg BandWidth:  325.299988
+
+Test Name: readreverse
+   Max Throughput: 431.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 143.810333
+   Max BandWidth:  256.700012
+   Min BandWidth:  256.700012
+   Avg BandWidth:  256.700012
+
+Test Name: fill100k
+   Max Throughput: 100.000000
+   Min Throughput: 100.000000
+   Avg Throughput: 100.000000
+   Max BandWidth:  37.900002
+   Min BandWidth:  37.900002
+   Avg BandWidth:  37.900002
+
+Test Name: crc32c
+   Max Throughput: 32.000000
+   Min Throughput: 32.000000
+   Avg Throughput: 32.000000
+   Max BandWidth:  2359.300049
+   Min BandWidth:  2359.300049
+   Avg BandWidth:  2359.300049
+
+Test Name: snappycomp
+   Max Throughput: 41839.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 13960.280273
+   Max BandWidth:  93.400002
+   Min BandWidth:  93.400002
+   Avg BandWidth:  93.400002
+
+Test Name: snappyuncomp
+   Max Throughput: 3549.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 1184.182983
+   Max BandWidth:  1100.599976
+   Min BandWidth:  1100.599976
+   Avg BandWidth:  1100.599976
+
+Test Name: acquireload
+   Max Throughput: 384.000000
+   Min Throughput: 0.000000
+   Avg Throughput: 128.128006
+   Max BandWidth:  1000.000000
+   Min BandWidth:  1000.000000
+   Avg BandWidth:  1000.000000
+

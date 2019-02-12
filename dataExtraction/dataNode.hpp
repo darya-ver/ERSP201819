@@ -23,14 +23,14 @@ class dataNode {
 		string testName;
 
 		//Values for throughput
-		float minThru = 0;
+		float minThru = INT_MAX;
 		float maxThru = 0;
 		float averageThru = 0;
 		int elementsThru = 0;
 		float totalThru = 0;
  
                 //Values for bandwidth
-                float minBand = 0;
+                float minBand = INT_MAX;
                 float maxBand = 0;
                 float averageBand = 0;
                 int elementsBand = 0;
@@ -45,7 +45,8 @@ class dataNode {
                     if( throughput > maxThru ) {
                         maxThru = throughput;
                     }
-                    else if ( throughput < minThru ) {
+
+                    if ( throughput < minThru ) {
                         minThru = throughput;
                     }
 
@@ -65,7 +66,8 @@ class dataNode {
                     if( bandwidth > maxBand ) {
                         maxBand = bandwidth;
                     }
-                    else if ( bandwidth < minBand ) {
+                    
+                    if ( bandwidth < minBand ) {
                         minBand = bandwidth;
                     }
 

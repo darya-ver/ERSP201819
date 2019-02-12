@@ -13,7 +13,7 @@
 #include <dirent.h>
 #include <string>
 
-#define VECSIZE 17
+#define VECSIZE 16
 
 using namespace std;
 
@@ -21,7 +21,7 @@ class dataVector {
 
 	private:
 		//Array with all test names
-    enum {arrsize = 17};
+    //enum {arrsize = 17};
 		//static const string testNames[arrsize] = { "fillseq", "fillsync",
     //"fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
     //"readreverse", "compact", "readrandom", "readseq", "readreverse",

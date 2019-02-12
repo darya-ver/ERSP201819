@@ -9,7 +9,7 @@ dataVector::dataVector() {
   
       const string testNames[VECSIZE] = { "fillseq", "fillsync",
         "fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
-        "readreverse", "compact", "readrandom", "readseq", "readreverse",
+        "readreverse", /*"compact",*/ "readrandom", "readseq", "readreverse",
         "fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
 
 			//Create node for each test
@@ -56,16 +56,18 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
             cerr << "\nIn File: " << fileName << endl;
         }
 
+        int vecIndex = 0;
+
         //Read in lines from the file
         string line;
         while( getline( inFile, line ) ) {
             lineNum++;
 
-            int vecIndex = 0;
 
             //We only want lines 7 on for data 
             if( lineNum >= 7 ) {
 
+                //cout << line << endl;
                 //Find index of first digit 
                 int i = 0;
                 while( !isdigit(line[i]) ) {
@@ -74,21 +76,39 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 //Convert to substring
                 string throughputSub = line.substr(i);
-                i++;
+               // i += throughputSub.length();
 
                 //Convert Float 
                 float throughput = stof(throughputSub);
+                //cout << throughput << endl;
+                //cout << "__" << to_string(throughput) << "__" << endl;
 
                 //Debugging
                 if( debug ) {
                     cerr << "Throughput: " << throughput << endl;
                 }
 
+                //Find index of m
+                while( line[i] != 'm' ) {
+                    i++;
+                }
+                // cout << line.substr(i) << endl;
+                
+                int error = 0;
                 //Find index of second digit
                 while( !isdigit(line[i]) ) {
                     i++;
+                    if( i > line.length()) {
+                      error = 1;
+                      break;
+                    }
                 }
-    
+                
+                // if there are no more numbers in that line
+                if( error ) {
+                  continue;
+                }
+
                 //Convert to substring
                 string bandwidthSub = line.substr(i);
 
@@ -105,8 +125,8 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 currNode->addThroughput(throughput);
                 currNode->addBandwidth(bandwidth);
 
+                vecIndex++;
             }
-            vecIndex++;
         }
 
         return true;
