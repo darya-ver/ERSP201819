@@ -23,14 +23,14 @@ class dataNode {
 		string testName;
 
 		//Values for throughput
-		float minThru = INT_MAX;
+		float minThru = INT8_MAX;
 		float maxThru = 0;
 		float averageThru = 0;
 		int elementsThru = 0;
 		float totalThru = 0;
  
                 //Values for bandwidth
-                float minBand = INT_MAX;
+                float minBand = INT8_MAX;
                 float maxBand = 0;
                 float averageBand = 0;
                 int elementsBand = 0;

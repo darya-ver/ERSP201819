@@ -4,6 +4,7 @@
  */
 
 #include "dataVector.hpp"
+#include <string.h>
 
 dataVector::dataVector() {
   
