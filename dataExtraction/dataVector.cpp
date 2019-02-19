@@ -75,7 +75,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 //Convert to substring
                 string throughputSub = line.substr(i);
-               // i += throughputSub.length();
 
                 //Convert Float 
                 float throughput = stof(throughputSub);
@@ -90,7 +89,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 while( line[i] != 'm' ) {
                     i++;
                 }
-                // cout << line.substr(i) << endl;
                 
                 int error = 0;
                 //Find index of second digit
@@ -134,10 +132,13 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                   nodeIt->second->addThroughput( throughput );
                   nodeIt->second->addBandwidth( bandwidth );
                 }
-
             }
         }
 
+        // loop through all the nodes and calculate quartiles
+        for( auto it2 = allData.begin(); it2 != allData.end(); it2 ++ ) {
+          it2->second->calculateQuartiles();
+        }
         return true;
 }                
        
@@ -180,9 +181,14 @@ bool dataVector::readDirectory( const string & directoryName ) {
  */
 bool dataVector::writeToFile( ofstream & outfile ) {
     
+   // cout << "here 10 \n";
+    
+    //cout << allData.size() << endl;
+
     auto it = allData.begin();
     while( it != allData.end() ) {
         dataNode * currNode = it->second;
+        //cout << "here 11 \n";
         currNode->writeNode( outfile );
         it ++;
     }
