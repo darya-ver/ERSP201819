@@ -23,73 +23,26 @@ class dataNode {
 		//Name of the test
 		string testName;
 
-		//Values for throughput
-		/*
-    float minThru = INT8_MAX;
-		float maxThru = 0;
-		float averageThru = 0;
-		int elementsThru = 0;
-		float totalThru = 0;
- 
-    //Values for bandwidth
-    float minBand = INT8_MAX;
-    float maxBand = 0;
-    float averageBand = 0;
-    int elementsBand = 0;
-    float totalBand = 0;
-    */
     vector<float> throughputs;
     vector<float> bandwidths;
     vector<float> bQ;
     vector<float> tQ;
 
     /*
-     * Adds throughput to the node, updates all fields
+     * Adds throughput to the node vector
      */
     void addThroughput( float throughput ) {
         
         throughputs.push_back( throughput );
-        /*
-        //Check min and max
-        if( throughput > maxThru ) {
-            maxThru = throughput;
-        }
-
-        if ( throughput < minThru ) {
-            minThru = throughput;
-        }
-
-        //Recalculate average
-        elementsThru++;
-        totalThru += throughput;
-        averageThru = totalThru/elementsThru;
-        */
     }
 
 
     /*
-     * Adds bandwidth to the node, updates all fields
+     * Adds bandwidth to the node vector
      */
     void addBandwidth( float bandwidth ) {
         
-        //cerr << "adding band for " << testName << endl;
-        //cerr << "size: " << bandwidths.size() << endl;
         bandwidths.push_back( bandwidth );
-        /*
-        //Check min and max
-        if( bandwidth > maxBand ) {
-            maxBand = bandwidth;
-        }
-        
-        if ( bandwidth < minBand ) {
-            minBand = bandwidth;
-        }
-
-        //Recalculate average
-        elementsBand++;
-        totalBand += bandwidth;
-        averageBand = totalBand/elementsBand;
-        */
     }
     
     /**
@@ -107,50 +60,15 @@ class dataNode {
     void doQuart( char c ) {
       vector<float> quantile; 
 
-                //cout << "before \n";
-
       // set the array depending on param
       if( c == 'b' ) {
         quantile = bandwidths;
       } else {
         quantile = throughputs;
       }
-      
-      //cerr << "size: " << quantile.size() << endl;
-
-      //cerr << "size: " << throughputs.size() << endl;
-      /*
-      auto const Q1 = quantile.size() / 4;
-      auto const Q2 = quantile.size() / 2;
-      auto const Q3 = Q1 + Q2;
-
-      nth_element( quantile.begin(),   
-                   quantile.begin() + Q1, quantile.end());
-
-      nth_element( quantile.begin() + Q1 + 1,   
-                   quantile.begin() + Q2, quantile.end());
-
-      nth_element( quantile.begin() + Q2 + 1,   
-                   quantile.begin() + Q3, quantile.end());
-      
-                cout << "after \n";
-      float q1 = quantile[Q1];
-      float q2 = quantile[Q2];
-      float q3 = quantile[Q3];
-
-      float max = INT8_MAX;
-
-      for( auto it = quantile.begin(); it != quantile.end(); it++ ) {
-        if( *it > max ) max = *it;
-      }
-      */
-
+     
       sort( quantile.begin(), quantile.end() );
-      //cout << "name: " << testName << ", " << c << endl;
       
-      for( unsigned int i = 0; i < quantile.size(); i++ ) {
-        //cout << "\t" << quantile[i] << endl;
-      }
       float q0 = quantile[0];
       float q1 = quantile[ quantile.size() / 4];
       float q2 = quantile[ quantile.size() / 2 ];
@@ -158,15 +76,6 @@ class dataNode {
                          + quantile.size() / 4 ];
       float max = quantile[ quantile.size() - 1];
 
-      /*
-      cout << "size: " << quantile.size() << endl;
-      cout << "min: " << q0 << endl;
-      cout << "Q1: " << q1 << endl;
-      cout << "Q2: " << q2 << endl;
-      cout << "Q3: " << q3 << endl;
-      cout << "max: " << max << endl;
-      */
-      
       // put values into array
       if( c == 'b' ) {
         bQ.push_back( q0 );
@@ -187,27 +96,6 @@ class dataNode {
      * Writes data to outfile
      */
     void writeNode( ofstream & outfile ) {
-            
-      //Strings to write
-      /*string testString = "Test Name: " + testName + "\n";
-      string maxThruStr = "   Max Throughput: " + to_string(maxThru) + "\n";
-      string minThruStr = "   Min Throughput: " + to_string(minThru) + "\n";
-      string avgThruStr = "   Avg Throughput: " + to_string(averageThru) + "\n";
-      string maxBandStr = "   Max BandWidth:  " + to_string(maxBand) + "\n";
-      string minBandStr = "   Min BandWidth:  " + to_string(minBand) + "\n";
-      string avgBandStr = "   Avg BandWidth:  " + to_string(averageBand) + "\n";
-
-      outfile.write( testString.c_str(), testString.length() );
-      outfile.write( maxThruStr.c_str(), maxThruStr.length() );
-      outfile.write( minThruStr.c_str(), minThruStr.length() );
-      outfile.write( avgThruStr.c_str(), avgThruStr.length() );
-      outfile.write( maxBandStr.c_str(), maxBandStr.length() );
-      outfile.write( minBandStr.c_str(), minBandStr.length() );
-      outfile.write( avgBandStr.c_str(), avgBandStr.length() );
-      outfile.write( "\n", 1 );
-      */
-
-      //cout << "here 5" << endl;
 
       string testString = "\n---------\nTest Name: " + testName + "\n";
       string bandwidthS = "\tBandwidths: \n\t\t"
@@ -224,45 +112,9 @@ class dataNode {
                                + to_string(tQ[3]) + ", "
                                + to_string(tQ[4]) + "\n";
 
-
-      string allThingsT = "\t";
-      cout << "\n-------\nTestName: " << testName << endl;
-
-      cout << "Throughputs: " << endl;
-      for( unsigned int i = 0; i < throughputs.size(); i++ ) {
-         cout << to_string(throughputs[i]) << ", ";      
-      }
-      cout << endl;
-      allThingsT += "\n";
-
-      string allThingsB = "\t";
-      cout << "Bandwidths: " << endl;
-      for( unsigned int i = 0; i < bandwidths.size(); i++ ) {
-        cout << to_string(bandwidths[i]) << ", " ;
-        allThingsB += ", ";
-      }
-      cout << endl;
-      allThingsB += "\n";
-      /*
-      string bQ0 = to_string(bQ[0]) + "\n";
-      string bQ1 = to_string(bQ[1]) + "\n";
-      string bQ2 = to_string(bQ[2]) + "\n";
-      string bQ3 = to_string(bQ[3]) + "\n";
-      string bQmax = to_string(bQ[4]) + "\n";
-      */
-
       outfile.write( testString.c_str(), testString.length() );
-      //outfile.write( allThingsB.c_str(), allThingsB.length() );
       outfile.write( bandwidthS.c_str(), bandwidthS.length() );
-      //outfile.write( allThingsT.c_str(), allThingsT.length() );
       outfile.write( throughputS.c_str(), throughputS.length() );
-      /*
-      outfile.write( bQ0.c_str(), bQ0.length() );
-      outfile.write( bQ1.c_str(), bQ1.length() );
-      outfile.write( bQ2.c_str(), bQ2.length() );
-      outfile.write( bQ3.c_str(), bQ3.length() );
-      outfile.write( bQmax.c_str(), bQmax.length() );
-      */
 
     }
 }; 

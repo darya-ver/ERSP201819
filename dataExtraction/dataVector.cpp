@@ -157,7 +157,6 @@ bool dataVector::readDirectory( const string & directoryName ) {
     //Loop through every file
     while( (file = readdir( dir )) != NULL ) {
         
-        //cerr << "dir name: " << file->d_name << endl;
         //Skip . and .. directories
         if( strcmp( file->d_name, "." ) == 0 || 
             strcmp( file->d_name, ".." ) == 0 ) {
@@ -178,14 +177,10 @@ bool dataVector::readDirectory( const string & directoryName ) {
  */
 bool dataVector::writeToFile( ofstream & outfile ) {
     
-   // cout << "here 10 \n";
-    
-    //cout << allData.size() << endl;
 
     auto it = allData.begin();
     while( it != allData.end() ) {
         dataNode * currNode = it->second;
-        //cout << "here 11 \n";
         currNode->writeNode( outfile );
         it ++;
     }
