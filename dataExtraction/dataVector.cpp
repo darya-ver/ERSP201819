@@ -75,7 +75,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 //Convert to substring
                 string throughputSub = line.substr(i);
-               // i += throughputSub.length();
 
                 //Convert Float 
                 float throughput = stof(throughputSub);
@@ -90,7 +89,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 while( line[i] != 'm' ) {
                     i++;
                 }
-                // cout << line.substr(i) << endl;
                 
                 int error = 0;
                 //Find index of second digit
@@ -134,7 +132,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                   nodeIt->second->addThroughput( throughput );
                   nodeIt->second->addBandwidth( bandwidth );
                 }
-
             }
         }
 
@@ -180,6 +177,7 @@ bool dataVector::readDirectory( const string & directoryName ) {
  */
 bool dataVector::writeToFile( ofstream & outfile ) {
     
+
     auto it = allData.begin();
     while( it != allData.end() ) {
         dataNode * currNode = it->second;
@@ -191,3 +189,18 @@ bool dataVector::writeToFile( ofstream & outfile ) {
 }
         
         
+/*
+ * Writes the vector to an outfile
+ */
+bool dataVector::writeToFilePython( ofstream & outfile ) {
+    
+
+    auto it = allData.begin();
+    while( it != allData.end() ) {
+        dataNode * currNode = it->second;
+        currNode->writeNodePython( outfile );
+        it ++;
+    }
+
+    return true;
+}

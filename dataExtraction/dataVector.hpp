@@ -20,14 +20,6 @@ using namespace std;
 
 class dataVector {
 
-	private:
-		//Array with all test names
-    //enum {arrsize = 17};
-		//static const string testNames[arrsize] = { "fillseq", "fillsync",
-    //"fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
-    //"readreverse", "compact", "readrandom", "readseq", "readreverse",
-    //"fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
-
 	public:
 		//Vector of tests 
 		unordered_map<string, dataNode *> allData;
@@ -35,22 +27,8 @@ class dataVector {
     bool debug = false;
 
 		//Constructor
-		dataVector(); // {
-      /*
-      const string testNames[arrsize] = { "fillseq", "fillsync",
-        "fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
-        "readreverse", "compact", "readrandom", "readseq", "readreverse",
-        "fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
-
-			//Create node for each test
-			for( int i = 0; i < VECSIZE; i++ ) {
-                                dataNode * tempNode = new dataNode(testnames[i]);
-				allData.push_back(tempNode);
-			}
-		}
-      */
-
-
+		dataVector();
+    
 		//Destructor, calls delete on every node
 		~dataVector() {
 			for( auto it = allData.begin(); it != allData.end(); it++ ) {
@@ -68,4 +46,8 @@ class dataVector {
 
     //Write the data to an output file
     bool writeToFile( ofstream & outfile);
+
+    //Write the data to an output file python
+    bool writeToFilePython( ofstream & outfile);
+
 };

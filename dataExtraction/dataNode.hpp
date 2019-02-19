@@ -7,6 +7,7 @@
 
 #include <string> 
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -22,83 +23,125 @@ class dataNode {
 		//Name of the test
 		string testName;
 
-		//Values for throughput
-		float minThru = INT8_MAX;
-		float maxThru = 0;
-		float averageThru = 0;
-		int elementsThru = 0;
-		float totalThru = 0;
- 
-    //Values for bandwidth
-    float minBand = INT8_MAX;
-    float maxBand = 0;
-    float averageBand = 0;
-    int elementsBand = 0;
-    float totalBand = 0;
+    vector<float> throughputs;
+    vector<float> bandwidths;
+    vector<float> bQ;
+    vector<float> tQ;
 
     /*
-     * Adds throughput to the node, updates all fields
+     * Adds throughput to the node vector
      */
     void addThroughput( float throughput ) {
         
-        //Check min and max
-        if( throughput > maxThru ) {
-            maxThru = throughput;
-        }
-
-        if ( throughput < minThru ) {
-            minThru = throughput;
-        }
-
-        //Recalculate average
-        elementsThru++;
-        totalThru += throughput;
-        averageThru = totalThru/elementsThru;
+        throughputs.push_back( throughput );
     }
 
 
     /*
-     * Adds bandwidth to the node, updates all fields
+     * Adds bandwidth to the node vector
      */
     void addBandwidth( float bandwidth ) {
         
-        //Check min and max
-        if( bandwidth > maxBand ) {
-            maxBand = bandwidth;
-        }
-        
-        if ( bandwidth < minBand ) {
-            minBand = bandwidth;
-        }
+        bandwidths.push_back( bandwidth );
+    }
+    
+    /**
+     * calculates the quartiles of throughput and bandwidth
+     */
+    void calculateQuartiles() {
 
-        //Recalculate average
-        elementsBand++;
-        totalBand += bandwidth;
-        averageBand = totalBand/elementsBand;
+      doQuart( 'b' ); // bandwidth
+      doQuart( 't' ); // throughput
+    }
+
+    /**
+     * caculates per array
+     */
+    void doQuart( char c ) {
+      vector<float> quantile; 
+
+      // set the array depending on param
+      if( c == 'b' ) {
+        quantile = bandwidths;
+      } else {
+        quantile = throughputs;
+      }
+     
+      sort( quantile.begin(), quantile.end() );
+      
+      float q0 = quantile[0];
+      float q1 = quantile[ quantile.size() / 4];
+      float q2 = quantile[ quantile.size() / 2 ];
+      float q3 = quantile[ quantile.size() / 2
+                         + quantile.size() / 4 ];
+      float max = quantile[ quantile.size() - 1];
+
+      // put values into array
+      if( c == 'b' ) {
+        bQ.push_back( q0 );
+        bQ.push_back( q1 );
+        bQ.push_back( q2 );
+        bQ.push_back( q3 );
+        bQ.push_back( max );
+      } else {
+        tQ.push_back( q0 );
+        tQ.push_back( q1 );
+        tQ.push_back( q2 );
+        tQ.push_back( q3 );
+        tQ.push_back( max );
+      }
+
     }
 
     /*
      * Writes data to outfile
      */
     void writeNode( ofstream & outfile ) {
-            
-      //Strings to write
-      string testString = "Test Name: " + testName + "\n";
-      string maxThruStr = "   Max Throughput: " + to_string(maxThru) + "\n";
-      string minThruStr = "   Min Throughput: " + to_string(minThru) + "\n";
-      string avgThruStr = "   Avg Throughput: " + to_string(averageThru) + "\n";
-      string maxBandStr = "   Max BandWidth:  " + to_string(maxBand) + "\n";
-      string minBandStr = "   Min BandWidth:  " + to_string(minBand) + "\n";
-      string avgBandStr = "   Avg BandWidth:  " + to_string(averageBand) + "\n";
+
+      string testString = "\n---------\nTest Name: " + testName + "\n";
+      string bandwidthS = "\tBandwidths: \n\t\t"
+                               + to_string(bQ[0]) + ", "
+                               + to_string(bQ[1]) + ", "
+                               + to_string(bQ[2]) + ", "
+                               + to_string(bQ[3]) + ", "
+                               + to_string(bQ[4]) + "\n";
+
+      string throughputS = "\tThroughputs: \n\t\t"
+                               + to_string(tQ[0]) + ", "
+                               + to_string(tQ[1]) + ", "
+                               + to_string(tQ[2]) + ", "
+                               + to_string(tQ[3]) + ", "
+                               + to_string(tQ[4]) + "\n";
 
       outfile.write( testString.c_str(), testString.length() );
-      outfile.write( maxThruStr.c_str(), maxThruStr.length() );
-      outfile.write( minThruStr.c_str(), minThruStr.length() );
-      outfile.write( avgThruStr.c_str(), avgThruStr.length() );
-      outfile.write( maxBandStr.c_str(), maxBandStr.length() );
-      outfile.write( minBandStr.c_str(), minBandStr.length() );
-      outfile.write( avgBandStr.c_str(), avgBandStr.length() );
-      outfile.write( "\n", 1 );
+      outfile.write( bandwidthS.c_str(), bandwidthS.length() );
+      outfile.write( throughputS.c_str(), throughputS.length() );
+
+    }
+
+    /*
+     * Writes data to outfile
+     */
+    void writeNodePython( ofstream & outfile ) {
+
+      string testString = testName + "\n";
+      string bandwidthS = "\tBandwidths: \n"
+                               + to_string(bQ[0]) + ", "
+                               + to_string(bQ[1]) + ", "
+                               + to_string(bQ[2]) + ", "
+                               + to_string(bQ[3]) + ", "
+                               + to_string(bQ[4]) + "\n";
+
+      string throughputS = "\tThroughputs: \n"
+                               + to_string(tQ[0]) + ", "
+                               + to_string(tQ[1]) + ", "
+                               + to_string(tQ[2]) + ", "
+                               + to_string(tQ[3]) + ", "
+                               + to_string(tQ[4]) + "\n";
+
+      outfile.write( testString.c_str(), testString.length() );
+      outfile.write( bandwidthS.c_str(), bandwidthS.length() );
+      outfile.write( throughputS.c_str(), throughputS.length() );
 
     }
 }; 
