@@ -29,78 +29,78 @@ class dataNode {
 		int elementsThru = 0;
 		float totalThru = 0;
  
-                //Values for bandwidth
-                float minBand = INT8_MAX;
-                float maxBand = 0;
-                float averageBand = 0;
-                int elementsBand = 0;
-                float totalBand = 0;
+    //Values for bandwidth
+    float minBand = INT8_MAX;
+    float maxBand = 0;
+    float averageBand = 0;
+    int elementsBand = 0;
+    float totalBand = 0;
 
-                /*
-                 * Adds throughput to the node, updates all fields
-                 */
-                void addThroughput( float throughput ) {
-                    
-                    //Check min and max
-                    if( throughput > maxThru ) {
-                        maxThru = throughput;
-                    }
+    /*
+     * Adds throughput to the node, updates all fields
+     */
+    void addThroughput( float throughput ) {
+        
+        //Check min and max
+        if( throughput > maxThru ) {
+            maxThru = throughput;
+        }
 
-                    if ( throughput < minThru ) {
-                        minThru = throughput;
-                    }
+        if ( throughput < minThru ) {
+            minThru = throughput;
+        }
 
-                    //Recalculate average
-                    elementsThru++;
-                    totalThru += throughput;
-                    averageThru = totalThru/elementsThru;
-                }
+        //Recalculate average
+        elementsThru++;
+        totalThru += throughput;
+        averageThru = totalThru/elementsThru;
+    }
 
 
-                /*
-                 * Adds bandwidth to the node, updates all fields
-                 */
-                void addBandwidth( float bandwidth ) {
-                    
-                    //Check min and max
-                    if( bandwidth > maxBand ) {
-                        maxBand = bandwidth;
-                    }
-                    
-                    if ( bandwidth < minBand ) {
-                        minBand = bandwidth;
-                    }
+    /*
+     * Adds bandwidth to the node, updates all fields
+     */
+    void addBandwidth( float bandwidth ) {
+        
+        //Check min and max
+        if( bandwidth > maxBand ) {
+            maxBand = bandwidth;
+        }
+        
+        if ( bandwidth < minBand ) {
+            minBand = bandwidth;
+        }
 
-                    //Recalculate average
-                    elementsBand++;
-                    totalBand += bandwidth;
-                    averageBand = totalBand/elementsBand;
-                }
+        //Recalculate average
+        elementsBand++;
+        totalBand += bandwidth;
+        averageBand = totalBand/elementsBand;
+    }
 
-                /*
-                 * Writes data to outfile
-                 */
-                void writeNode( ofstream & outfile ) {
-                        
-                        //Strings to write
-                        string testString = "Test Name: " + testName + "\n";
-                        string maxThruStr = "   Max Throughput: " + to_string(maxThru) + "\n";
-                        string minThruStr = "   Min Throughput: " + to_string(minThru) + "\n";
-                        string avgThruStr = "   Avg Throughput: " + to_string(averageThru) + "\n";
-                        string maxBandStr = "   Max BandWidth:  " + to_string(maxBand) + "\n";
-                        string minBandStr = "   Min BandWidth:  " + to_string(minBand) + "\n";
-                        string avgBandStr = "   Avg BandWidth:  " + to_string(averageBand) + "\n";
-                        
-                        outfile.write( testString.c_str(), testString.length() );
-                        outfile.write( maxThruStr.c_str(), maxThruStr.length() );
-                        outfile.write( minThruStr.c_str(), minThruStr.length() );
-                        outfile.write( avgThruStr.c_str(), avgThruStr.length() );
-                        outfile.write( maxBandStr.c_str(), maxBandStr.length() );
-                        outfile.write( minBandStr.c_str(), minBandStr.length() );
-                        outfile.write( avgBandStr.c_str(), avgBandStr.length() );
-                        outfile.write( "\n", 1 );
+    /*
+     * Writes data to outfile
+     */
+    void writeNode( ofstream & outfile ) {
+            
+      //Strings to write
+      string testString = "Test Name: " + testName + "\n";
+      string maxThruStr = "   Max Throughput: " + to_string(maxThru) + "\n";
+      string minThruStr = "   Min Throughput: " + to_string(minThru) + "\n";
+      string avgThruStr = "   Avg Throughput: " + to_string(averageThru) + "\n";
+      string maxBandStr = "   Max BandWidth:  " + to_string(maxBand) + "\n";
+      string minBandStr = "   Min BandWidth:  " + to_string(minBand) + "\n";
+      string avgBandStr = "   Avg BandWidth:  " + to_string(averageBand) + "\n";
 
-                }
+      outfile.write( testString.c_str(), testString.length() );
+      outfile.write( maxThruStr.c_str(), maxThruStr.length() );
+      outfile.write( minThruStr.c_str(), minThruStr.length() );
+      outfile.write( avgThruStr.c_str(), avgThruStr.length() );
+      outfile.write( maxBandStr.c_str(), maxBandStr.length() );
+      outfile.write( minBandStr.c_str(), minBandStr.length() );
+      outfile.write( avgBandStr.c_str(), avgBandStr.length() );
+      outfile.write( "\n", 1 );
+
+    }
 }; 
 
 

@@ -6,21 +6,19 @@
 #include "dataVector.hpp"
 #include <string.h>
 
-dataVector::dataVector() {
-  
-      const string testNames[VECSIZE] = { "fillseq", "fillsync",
-        "fillrandom", "overwrite", "readrandom", "readrandom", "readseq",
-        "readreverse", /*"compact",*/ "readrandom", "readseq", "readreverse",
-        "fill100k", "crc32c", "snappycomp", "snappyuncomp", "acquireload"  };
+dataVector::dataVector() {}
 
-			//Create node for each test
-			for( int i = 0; i < VECSIZE; i++ ) {
-                                dataNode * tempNode = new dataNode(testNames[i]);
-				allData.push_back(tempNode);
-			}
+/**
+ * removes extra space at the end of a string
+ */
+string removeSpace( string OG ) {
+  int count = 0;
+  while( count < OG.length() && (isalpha(OG[count]) || isdigit( OG[count] )) ) {
+    count ++;
+  }
+
+  return OG.substr(0, count);
 }
-
-
 
 
 /*
@@ -57,18 +55,18 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
             cerr << "\nIn File: " << fileName << endl;
         }
 
-        int vecIndex = 0;
-
         //Read in lines from the file
         string line;
         while( getline( inFile, line ) ) {
             lineNum++;
 
-
-            //We only want lines 7 on for data 
+            //We only want lines 7+ on for data 
             if( lineNum >= 7 ) {
 
-                //cout << line << endl;
+                // get the string name
+                string::size_type pos = line.find(':');
+                string testName = removeSpace(line.substr(0, pos));
+
                 //Find index of first digit 
                 int i = 0;
                 while( !isdigit(line[i]) ) {
@@ -81,8 +79,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 //Convert Float 
                 float throughput = stof(throughputSub);
-                //cout << throughput << endl;
-                //cout << "__" << to_string(throughput) << "__" << endl;
 
                 //Debugging
                 if( debug ) {
@@ -121,12 +117,23 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                     cerr << "Bandwidth: " << bandwidth << endl;
                 }
 
-                //Add data into vector
-                dataNode * currNode = allData[vecIndex];
-                currNode->addThroughput(throughput);
-                currNode->addBandwidth(bandwidth);
+                // get the node with specified test name
+                auto nodeIt = allData.find( testName );
 
-                vecIndex++;
+                // if node doesn't exist make new one
+                if( nodeIt == allData.end() ) {
+                  dataNode * newNode = new dataNode( testName );
+                  newNode->addThroughput( throughput );
+                  newNode->addBandwidth( bandwidth );
+                  allData.insert( make_pair( testName, newNode ) );
+                }
+
+                // if it does exist, add to it
+                else {
+                  nodeIt->second->addThroughput( throughput );
+                  nodeIt->second->addBandwidth( bandwidth );
+                }
+
             }
         }
 
@@ -172,14 +179,14 @@ bool dataVector::readDirectory( const string & directoryName ) {
  */
 bool dataVector::writeToFile( ofstream & outfile ) {
     
-    //Iterate through entire vector
-    for( int i = 0; i < VECSIZE; i++ ) {
-        dataNode * currNode = allData[i];
+    auto it = allData.begin();
+    while( it != allData.end() ) {
+        dataNode * currNode = it->second;
         currNode->writeNode( outfile );
+        it ++;
     }
 
     return true;
-
 }
         
         

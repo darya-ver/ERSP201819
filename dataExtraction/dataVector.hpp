@@ -12,6 +12,7 @@
 #include <iostream>
 #include <dirent.h>
 #include <string>
+#include <unordered_map>
 
 #define VECSIZE 16
 
@@ -29,7 +30,7 @@ class dataVector {
 
 	public:
 		//Vector of tests 
-		vector<dataNode *> allData;
+		unordered_map<string, dataNode *> allData;
 
     bool debug = false;
 
@@ -53,18 +54,18 @@ class dataVector {
 		//Destructor, calls delete on every node
 		~dataVector() {
 			for( auto it = allData.begin(); it != allData.end(); it++ ) {
-				delete *it;
+				delete it->second;
 			}
 		}
 
 
-                //Gets data from each file
-                bool readFile( const string & directoryName, 
-                               struct dirent * file);
+    //Gets data from each file
+    bool readFile( const string & directoryName, 
+               struct dirent * file);
 
-                //Loop through all files in a directory
-                bool readDirectory( const string & directoryName );
+    //Loop through all files in a directory
+    bool readDirectory( const string & directoryName );
 
-                //Write the data to an output file
-                bool writeToFile( ofstream & outfile);
+    //Write the data to an output file
+    bool writeToFile( ofstream & outfile);
 };
