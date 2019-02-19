@@ -79,6 +79,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 //Convert Float 
                 float throughput = stof(throughputSub);
+                throughput = 1 / throughput;
 
                 //Debugging
                 if( debug ) {
