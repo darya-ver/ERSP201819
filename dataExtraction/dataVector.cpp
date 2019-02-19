@@ -135,10 +135,6 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
             }
         }
 
-        // loop through all the nodes and calculate quartiles
-        for( auto it2 = allData.begin(); it2 != allData.end(); it2 ++ ) {
-          it2->second->calculateQuartiles();
-        }
         return true;
 }                
        
@@ -161,6 +157,7 @@ bool dataVector::readDirectory( const string & directoryName ) {
     //Loop through every file
     while( (file = readdir( dir )) != NULL ) {
         
+        //cerr << "dir name: " << file->d_name << endl;
         //Skip . and .. directories
         if( strcmp( file->d_name, "." ) == 0 || 
             strcmp( file->d_name, ".." ) == 0 ) {

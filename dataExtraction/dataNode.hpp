@@ -72,6 +72,8 @@ class dataNode {
      */
     void addBandwidth( float bandwidth ) {
         
+        //cerr << "adding band for " << testName << endl;
+        //cerr << "size: " << bandwidths.size() << endl;
         bandwidths.push_back( bandwidth );
         /*
         //Check min and max
@@ -94,6 +96,7 @@ class dataNode {
      * calculates the quartiles of throughput and bandwidth
      */
     void calculateQuartiles() {
+
       doQuart( 'b' ); // bandwidth
       doQuart( 't' ); // throughput
     }
@@ -113,6 +116,9 @@ class dataNode {
         quantile = throughputs;
       }
       
+      //cerr << "size: " << quantile.size() << endl;
+
+      //cerr << "size: " << throughputs.size() << endl;
       /*
       auto const Q1 = quantile.size() / 4;
       auto const Q2 = quantile.size() / 2;
@@ -140,10 +146,10 @@ class dataNode {
       */
 
       sort( quantile.begin(), quantile.end() );
-      cout << "name: " << testName << ", " << c << endl;
-
+      //cout << "name: " << testName << ", " << c << endl;
+      
       for( unsigned int i = 0; i < quantile.size(); i++ ) {
-        cout << "\t" << quantile[i] << endl;
+        //cout << "\t" << quantile[i] << endl;
       }
       float q0 = quantile[0];
       float q1 = quantile[ quantile.size() / 4];
@@ -152,11 +158,14 @@ class dataNode {
                          + quantile.size() / 4 ];
       float max = quantile[ quantile.size() - 1];
 
+      /*
+      cout << "size: " << quantile.size() << endl;
       cout << "min: " << q0 << endl;
       cout << "Q1: " << q1 << endl;
       cout << "Q2: " << q2 << endl;
       cout << "Q3: " << q3 << endl;
       cout << "max: " << max << endl;
+      */
       
       // put values into array
       if( c == 'b' ) {
@@ -166,7 +175,7 @@ class dataNode {
         bQ.push_back( q3 );
         bQ.push_back( max );
       } else {
-        bQ.push_back( q0 );
+        tQ.push_back( q0 );
         tQ.push_back( q1 );
         tQ.push_back( q2 );
         tQ.push_back( q3 );
@@ -200,19 +209,60 @@ class dataNode {
 
       //cout << "here 5" << endl;
 
-      string testString = "Test Name: " + testName + "\n";
+      string testString = "\n---------\nTest Name: " + testName + "\n";
+      string bandwidthS = "\tBandwidths: \n\t\t"
+                               + to_string(bQ[0]) + ", "
+                               + to_string(bQ[1]) + ", "
+                               + to_string(bQ[2]) + ", "
+                               + to_string(bQ[3]) + ", "
+                               + to_string(bQ[4]) + "\n";
+
+      string throughputS = "\tThroughputs: \n\t\t"
+                               + to_string(tQ[0]) + ", "
+                               + to_string(tQ[1]) + ", "
+                               + to_string(tQ[2]) + ", "
+                               + to_string(tQ[3]) + ", "
+                               + to_string(tQ[4]) + "\n";
+
+
+      string allThingsT = "\t";
+      cout << "\n-------\nTestName: " << testName << endl;
+
+      cout << "Throughputs: " << endl;
+      for( unsigned int i = 0; i < throughputs.size(); i++ ) {
+         cout << to_string(throughputs[i]) << ", ";      
+      }
+      cout << endl;
+      allThingsT += "\n";
+
+      string allThingsB = "\t";
+      cout << "Bandwidths: " << endl;
+      for( unsigned int i = 0; i < bandwidths.size(); i++ ) {
+        cout << to_string(bandwidths[i]) << ", " ;
+        allThingsB += ", ";
+      }
+      cout << endl;
+      allThingsB += "\n";
+      /*
       string bQ0 = to_string(bQ[0]) + "\n";
       string bQ1 = to_string(bQ[1]) + "\n";
       string bQ2 = to_string(bQ[2]) + "\n";
       string bQ3 = to_string(bQ[3]) + "\n";
       string bQmax = to_string(bQ[4]) + "\n";
+      */
 
       outfile.write( testString.c_str(), testString.length() );
+      //outfile.write( allThingsB.c_str(), allThingsB.length() );
+      outfile.write( bandwidthS.c_str(), bandwidthS.length() );
+      //outfile.write( allThingsT.c_str(), allThingsT.length() );
+      outfile.write( throughputS.c_str(), throughputS.length() );
+      /*
       outfile.write( bQ0.c_str(), bQ0.length() );
       outfile.write( bQ1.c_str(), bQ1.length() );
       outfile.write( bQ2.c_str(), bQ2.length() );
       outfile.write( bQ3.c_str(), bQ3.length() );
       outfile.write( bQmax.c_str(), bQmax.length() );
+      */
 
     }
 }; 
