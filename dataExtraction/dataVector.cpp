@@ -189,3 +189,18 @@ bool dataVector::writeToFile( ofstream & outfile ) {
 }
         
         
+/*
+ * Writes the vector to an outfile
+ */
+bool dataVector::writeToFilePython( ofstream & outfile ) {
+    
+
+    auto it = allData.begin();
+    while( it != allData.end() ) {
+        dataNode * currNode = it->second;
+        currNode->writeNodePython( outfile );
+        it ++;
+    }
+
+    return true;
+}

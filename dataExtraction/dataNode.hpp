@@ -92,6 +92,7 @@ class dataNode {
       }
 
     }
+
     /*
      * Writes data to outfile
      */
@@ -106,6 +107,32 @@ class dataNode {
                                + to_string(bQ[4]) + "\n";
 
       string throughputS = "\tThroughputs: \n\t\t"
+                               + to_string(tQ[0]) + ", "
+                               + to_string(tQ[1]) + ", "
+                               + to_string(tQ[2]) + ", "
+                               + to_string(tQ[3]) + ", "
+                               + to_string(tQ[4]) + "\n";
+
+      outfile.write( testString.c_str(), testString.length() );
+      outfile.write( bandwidthS.c_str(), bandwidthS.length() );
+      outfile.write( throughputS.c_str(), throughputS.length() );
+
+    }
+
+    /*
+     * Writes data to outfile
+     */
+    void writeNodePython( ofstream & outfile ) {
+
+      string testString = testName + "\n";
+      string bandwidthS = "\tBandwidths: \n"
+                               + to_string(bQ[0]) + ", "
+                               + to_string(bQ[1]) + ", "
+                               + to_string(bQ[2]) + ", "
+                               + to_string(bQ[3]) + ", "
+                               + to_string(bQ[4]) + "\n";
+
+      string throughputS = "\tThroughputs: \n"
                                + to_string(tQ[0]) + ", "
                                + to_string(tQ[1]) + ", "
                                + to_string(tQ[2]) + ", "

@@ -46,4 +46,8 @@ class dataVector {
 
     //Write the data to an output file
     bool writeToFile( ofstream & outfile);
+
+    //Write the data to an output file python
+    bool writeToFilePython( ofstream & outfile);
+
 };
