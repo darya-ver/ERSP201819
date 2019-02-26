@@ -33,6 +33,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
         //Line number we've reached in the file
         unsigned int lineNum = 0; 
         string fileName = directoryName;
+        bool seenComp = false; // to check to see if we've compact method
 
         //Adds backslash if necessary
         if( directoryName.back() != '/' ) {
@@ -67,6 +68,9 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 string::size_type pos = line.find(':');
                 string testName = removeSpace(line.substr(0, pos));
 
+                // compressed versions of the tests
+                if( seenComp )  testName += "_wComp";
+
                 //Find index of first digit 
                 int i = 0;
                 while( !isdigit(line[i]) ) {
@@ -100,8 +104,10 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                     }
                 }
                 
-                // if there are no more numbers in that line
+                // if there are no more numbers in that line - REACHED
+                //    COMPACT
                 if( error ) {
+                  seenComp = true;
                   continue;
                 }
 
