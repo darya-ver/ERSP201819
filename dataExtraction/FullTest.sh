@@ -21,7 +21,7 @@ do
   fileName="$1_test_$i.txt"
   echo -e "Completing test\t$i..."
   ./../../leveldb/build/db_bench 1> testingData/$fileName 2> extraText.txt
-  ./a.out
+  #./a.out
 done
 
 echo -e "\nSuccessfully ran all tests"
