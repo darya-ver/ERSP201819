@@ -1,0 +1,9 @@
+Keys:       16 bytes each
+Values:     100 bytes each (50 bytes after compression)
+Entries:    1000000
+RawSize:    110.6 MB (estimated)
+FileSize:   62.9 MB (estimated)
+------------------------------------------------
+fillseq      :       4.220 micros/op;   26.2 MB/s
+fillsync     :    3170.130 micros/op;    0.0 MB/s (1000 ops)
+fillrandom   :       5.884 micros/op;   18.8 MB/s
