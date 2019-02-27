@@ -96,6 +96,28 @@ class dataNode {
     /*
      * Writes data to outfile
      */
+    void writeNodeT( ofstream & outfile ) {
+      for( unsigned int i = 0; i < throughputs.size(); i++ ) {
+        string num = to_string( throughputs[i] ) + ",";
+        outfile.write( num.c_str(), num.length() );
+      }
+      outfile.write( "\n", 1 );
+    }
+
+    /*
+     * Writes data to outfile
+     */
+    void writeNodeB( ofstream & outfile ) {
+      for( unsigned int i = 0; i < bandwidths.size(); i++ ) {
+        string num = to_string( bandwidths[i] ) + ",";
+        outfile.write( num.c_str(), num.length() );
+      }
+      outfile.write( "\n", 1 );
+    }
+
+    /*
+     * Writes data to outfile
+     */
     void writeNode( ofstream & outfile ) {
 
       string testString = "\n---------\nTest Name: " + testName + "\n";
