@@ -8,14 +8,26 @@ using namespace std;
 
 int main() {
   
-  const string dirName = "./testingDataOld";
+  const string dirName = "./testingData";
   
   dataVector vect; 
   vect.readDirectory( dirName );
   
   vector<string> names;
 
-  ofstream outfile("pythonListsOld.txt", ofstream::out );
+  ofstream outfile("pythonListsCurr.txt", ofstream::out );
+
+  // loop through all the nodes and calculate quartiles
+  for( auto it2 = vect.allData.begin(); it2 != vect.allData.end(); it2 ++ ) {
+    names.push_back( it2->second->testName );
+  }
+  
+  // writing all the lists to a file 
+  for(int i = 0; i < names.size(); i++ ) {
+    string num = names[i] + ",";
+    outfile.write( num.c_str(), num.length() );
+  }
+  outfile.write( "\n", 1 );
 
   /*
    *  THROUGHPUT
