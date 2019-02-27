@@ -12,7 +12,6 @@ int main() {
   
   dataVector vect; 
   vect.readDirectory( dirName );
-
   
   vector<string> names;
 
