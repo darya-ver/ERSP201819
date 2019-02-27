@@ -128,15 +128,26 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 // if node doesn't exist make new one
                 if( nodeIt == allData.end() ) {
                   dataNode * newNode = new dataNode( testName );
-                  newNode->addThroughput( throughput );
                   newNode->addBandwidth( bandwidth );
+                  newNode->addThroughput( throughput );
+                  /*if( throughput > 99999.0 ) {
+                    newNode->addThroughput( 0 );
+                    cerr << "omg \n";
+                  } else {
+                    newNode->addThroughput( throughput );
+                  }*/
                   allData.insert( make_pair( testName, newNode ) );
                 }
 
                 // if it does exist, add to it
                 else {
                   nodeIt->second->addThroughput( throughput );
-                  nodeIt->second->addBandwidth( bandwidth );
+                  if( bandwidth > 99999.0 ) {
+                    nodeIt->second->addBandwidth( 0 );
+                    cerr << "omg \n";
+                  } else {
+                    nodeIt->second->addBandwidth( bandwidth );
+                  }
                 }
             }
         }
