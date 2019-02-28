@@ -1,5 +1,5 @@
-#from displayGraph import drawEbar, drawBoxPlot
-#import numpy as np
+from displayGraph import drawEbar, drawBoxPlot
+import numpy as np
 
 def main():
 
@@ -12,6 +12,9 @@ def main():
 
   tests = []        # array of names
 
+  allDataT = []     # array of all data
+  allDataB = []
+    
   ########################
   ###   CURR KERNEL
   ########################
@@ -82,24 +85,26 @@ def main():
   ###  GRAPH STUFF 
   ########################
 
-  print( tests )
+  for i in range(len(allDataTOld)):
+    allDataT.append(allDataTOld[i])
+    allDataT.append(allDataTCurr[i])
 
-  print( allDataTCurr )
-  print( allDataBCurr )
-
-  print( allDataTOld )
-  print( allDataBOld )
-
-  # convert all lists to arrays
-  #tests = np.asarray(tests)
+  for i in range(len(allDataBOld)):
+    allDataB.append(allDataBOld[i])
+    allDataB.append(allDataBCurr[i])
 
   #allDataTCurr = np.asarray(allDataTCurr)
   #allDataBCurr = np.asarray(allDataBCurr)
   #allDataTOld = np.asarray(allDataTOld)
   #allDataBOld = np.asarray(allDataBOld)
-
   #drawEbar(tests, minsT, twosT, maxsT)
-  #drawBoxPlot(tests, minsT, onesT, twosT, threesT, maxsT)
+  
+  # array of info to pass into boxplot
+  tInfo = ["Throughput LevelDB Data", "benchmarks", "op/s"]
+  bInfo = ["Bandwidth LevelDB Data", "benchmarks", "mB/s"]
+
+  drawBoxPlot(tests, allDataT, tInfo)
+  drawBoxPlot(tests, allDataB, bInfo)
 
 if __name__ == '__main__':
   main()
