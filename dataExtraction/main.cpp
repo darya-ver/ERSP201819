@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
   
-  const string dirName = "./testingData";
+  const string dirName = "./testingDataOld";
   
   dataVector vect; 
   vect.readDirectory( dirName );
@@ -14,7 +14,7 @@ int main() {
     it2->second->calculateQuartiles();
   }
 
-  ofstream outfile("outFile1.txt", ofstream::out );
+  ofstream outfile("quartilesOld.txt", ofstream::out );
 
   vect.writeToFile( outfile );
 

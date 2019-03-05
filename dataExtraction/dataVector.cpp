@@ -136,7 +136,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                   newNode->addThroughput( throughput );
                   if( bandwidth > 99999.0 ) {
                     newNode->addBandwidth( 0 );
-                    cerr << "omg \n";
+                    //cerr << "omg \n";
                   } else {
                     newNode->addBandwidth( bandwidth );
                   }
@@ -154,7 +154,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                   nodeIt->second->addThroughput( throughput );
                   if( bandwidth > 99999.0 ) {
                     nodeIt->second->addBandwidth( 0 );
-                    cerr << "omg \n";
+                    //cerr << "omg \n";
                   } else {
                     nodeIt->second->addBandwidth( bandwidth );
                   }
