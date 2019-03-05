@@ -8,14 +8,14 @@ using namespace std;
 
 int main() {
   
-  const string dirName = "./testingData";
+  const string dirName = "./testingDataOld";
   
   dataVector vect; 
   vect.readDirectory( dirName );
   
   vector<string> names;
 
-  ofstream outfile("pythonListsCurr.txt", ofstream::out );
+  ofstream outfile("pythonListsOld.txt", ofstream::out );
 
   // loop through all the nodes and calculate quartiles
   for( auto it2 = vect.allData.begin(); it2 != vect.allData.end(); it2 ++ ) {

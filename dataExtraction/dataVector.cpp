@@ -58,6 +58,7 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
         //Read in lines from the file
         string line;
+        int count = 0;
         while( getline( inFile, line ) ) {
             lineNum++;
 
@@ -69,7 +70,10 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
                 string testName = removeSpace(line.substr(0, pos));
 
                 // compressed versions of the tests
-                if( seenComp )  testName += "_wComp";
+                if( seenComp && count < 3) {
+                  testName += "_wComp";
+                  count ++;
+                }
 
                 //Find index of first digit 
                 int i = 0;
