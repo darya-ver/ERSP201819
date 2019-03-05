@@ -1,7 +1,3 @@
-//#include <Python.h>
-//#include <vector>
-//#include <stdexcept>
-//#include "PyUtils.h"
 #include "dataVector.cpp"
 
 using namespace std;
