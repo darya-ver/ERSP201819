@@ -14,7 +14,7 @@ def drawEbar(tests, mins, meds, maxs):
 
 def drawBoxPlot(tests, data, info):
 	# draw boxplot with no outliers and allows color
-	bplot = plt.boxplot(data, 0, '', patch_artist = True)
+	bplot = plt.boxplot(data, 0, '', patch_artist = True )
 	
 	# different color and width settings
 	color = ['red', 'blue']
