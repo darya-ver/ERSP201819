@@ -20,7 +20,7 @@ def main():
   ########################
 
   # open file
-  fp = open('../DataExtraction/pythonLists/pythonListsCurr.txt')
+  fp = open('../DataExtraction/pythonListsNewOMG.txt')
   # iterate through all lines
   for i, line in enumerate(fp.readlines() ):
 
@@ -55,7 +55,7 @@ def main():
   ########################
 
   # open file
-  fp = open('../DataExtraction/pythonLists/pythonListsOld.txt')
+  fp = open('../DataExtraction/pythonListsOldOMG.txt')
 
   # iterate through all lines
   for i, line in enumerate(fp.readlines() ):
