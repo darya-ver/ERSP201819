@@ -4,46 +4,113 @@ using namespace std;
 
 int main() {
   
-  const string dirName = "./testingDataOld";
+  const string dirNameOld = "./testingDataOld";
   
-  dataVector vect; 
-  vect.readDirectory( dirName );
+  dataVector vectOld; 
+  vectOld.readDirectory( dirNameOld );
   
   vector<string> names;
 
-  ofstream outfile("pythonListsOld.txt", ofstream::out );
+  ofstream outfileOld("pythonListsOldOMG.txt", ofstream::out );
+
+  //unordered_map<string, vector<dataNode *> testsAndStuff;
 
   // loop through all the nodes and calculate quartiles
-  for( auto it2 = vect.allData.begin(); it2 != vect.allData.end(); it2 ++ ) {
+  for( auto it2 = vectOld.allData.begin(); it2 != vectOld.allData.end(); it2 ++ ) {
     names.push_back( it2->second->testName );
   }
   
   // writing all the lists to a file 
   for(int i = 0; i < names.size(); i++ ) {
     string num = names[i] + ",";
-    outfile.write( num.c_str(), num.length() );
+    outfileOld.write( num.c_str(), num.length() );
   }
-  outfile.write( "\n", 1 );
+  outfileOld.write( "\n", 1 );
 
   /*
    *  THROUGHPUT
    */
-  outfile.write( "throughputs\n", 12 );
+  outfileOld.write( "throughputs\n", 12 );
 
-  for( auto it = vect.allData.begin(); it != vect.allData.end(); it++ ) {
-    it->second->writeNodeT( outfile );
+  for( auto it = vectOld.allData.begin(); it != vectOld.allData.end(); it++ ) {
+    it->second->writeNodeT( outfileOld );
   }
   
   /*
    *  THROUGHPUT
    */
-  outfile.write( "bandwidths\n", 11 );
+  outfileOld.write( "bandwidths\n", 11 );
 
-  for( auto it = vect.allData.begin(); it != vect.allData.end(); it++ ) {
-    it->second->writeNodeB( outfile );
+  for( auto it = vectOld.allData.begin(); it != vectOld.allData.end(); it++ ) {
+    it->second->writeNodeB( outfileOld );
   }
 
-  outfile.close();
+  outfileOld.close();
+
+
+/*
+  NEW STUFF
+
+
+
+
+
+*/
+
+  const string dirNameNew = "./testingData";
+    
+  dataVector vectNew; 
+  vectNew.readDirectory( dirNameNew );
+
+  ofstream outfileNew("pythonListsNewOMG.txt", ofstream::out );
+
+  //unordered_map<string, vector<dataNode *> testsAndStuff;
+
+  // // loop through all the nodes and calculate quartiles
+  // for( auto it2 = vectNew.allData.begin(); it2 != vectNew.allData.end(); it2 ++ ) {
+  //   names.push_back( it2->second->testName );
+  // }
+  
+  // writing all the lists to a file 
+  for(int i = 0; i < names.size(); i++ ) {
+    string num = names[i] + ",";
+    outfileNew.write( num.c_str(), num.length() );
+  }
+  outfileNew.write( "\n", 1 );
+
+  /*
+   *  THROUGHPUT
+   */
+  outfileNew.write( "throughputs\n", 12 );
+
+  // for( auto it = vectNew.allData.begin(); it != vectNew.allData.end(); it++ ) {
+  //   it->second->writeNodeT( outfileNew );
+  // }
+  for(unsigned int i = 0; i < names.size(); i++ ) {
+    auto it = vectNew.allData.find( names[i] );
+    it->second->writeNodeT( outfileNew );
+  }
+  
+  /*
+   *  THROUGHPUT
+   */
+  outfileNew.write( "bandwidths\n", 11 );
+
+  // for( auto it = vectNew.allData.begin(); it != vectNew.allData.end(); it++ ) {
+  //   it->second->writeNodeB( outfileNew );
+  // }
+  for(unsigned int i = 0; i < names.size(); i++ ) {
+    auto it = vectNew.allData.find( names[i] );
+    it->second->writeNodeB( outfileNew );
+  }
+
+  outfileNew.close();
+
+
+
+
+
+
   return 0;
   /*
   vector<float> minsT;

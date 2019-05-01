@@ -71,8 +71,8 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 // compressed versions of the tests
                 if( seenComp && count < 3) {
-                  testName += "_wComp";
-                  count ++;
+                    testName += "_wComp";
+                    count ++;
                 }
 
                 //Find index of first digit 
@@ -131,33 +131,33 @@ bool dataVector::readFile( const string & directoryName, struct dirent * file) {
 
                 // if node doesn't exist make new one
                 if( nodeIt == allData.end() ) {
-                  dataNode * newNode = new dataNode( testName );
-                  //newNode->addBandwidth( bandwidth );
-                  newNode->addThroughput( throughput );
-                  if( bandwidth > 99999.0 ) {
-                    newNode->addBandwidth( 0 );
-                    //cerr << "omg \n";
-                  } else {
-                    newNode->addBandwidth( bandwidth );
-                  }
-                  /*if( throughput > 99999.0 ) {
-                    newNode->addThroughput( 0 );
-                    cerr << "omg \n";
-                  } else {
+                    dataNode * newNode = new dataNode( testName );
+                    //newNode->addBandwidth( bandwidth );
                     newNode->addThroughput( throughput );
-                  }*/
-                  allData.insert( make_pair( testName, newNode ) );
+                    if( bandwidth > 99999.0 ) {
+                        newNode->addBandwidth( 0 );
+                        //cerr << "omg \n";
+                    } else {
+                        newNode->addBandwidth( bandwidth );
+                    }
+                    /*if( throughput > 99999.0 ) {
+                        newNode->addThroughput( 0 );
+                        cerr << "omg \n";
+                    } else {
+                        newNode->addThroughput( throughput );
+                    }*/
+                    allData.insert( make_pair( testName, newNode ) );
                 }
 
                 // if it does exist, add to it
                 else {
-                  nodeIt->second->addThroughput( throughput );
-                  if( bandwidth > 99999.0 ) {
-                    nodeIt->second->addBandwidth( 0 );
-                    //cerr << "omg \n";
-                  } else {
-                    nodeIt->second->addBandwidth( bandwidth );
-                  }
+                    nodeIt->second->addThroughput( throughput );
+                    if( bandwidth > 99999.0 ) {
+                        nodeIt->second->addBandwidth( 0 );
+                        //cerr << "omg \n";
+                    } else {
+                        nodeIt->second->addBandwidth( bandwidth );
+                    }
                 }
             }
         }
