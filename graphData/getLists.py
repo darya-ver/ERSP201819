@@ -100,8 +100,8 @@ def main():
   #drawEbar(tests, minsT, twosT, maxsT)
   
   # array of info to pass into boxplot
-  tInfo = ["Figure 1: Throughput LevelDB", "Benchmarks", "op/s (in millions)"]
-  bInfo = ["Figure 2: Bandwidth LevelDB", "Benchmarks", "MB/s"]
+  tInfo = ["Throughput LevelDB", "Benchmarks", "op/s (in millions)"]
+  bInfo = ["Bandwidth LevelDB", "Benchmarks", "MB/s"]
 
   drawBoxPlot(tests, allDataT, tInfo)
   drawBoxPlot(tests, allDataB, bInfo)
