@@ -28,7 +28,6 @@ the `.png` files that contain the graphs themselves.
     * `Figure 1: Throughput LevelDB.png`: Throughput graph between old and new kernel versions.
     * `Figure 2: Bandwidth LevelDB.png`: Bandwidth graph between old and new kernel versions.
     * `displayGraph.py`: Python file that displays the graph
-    * `displayGraph.pyc`: IDK WHAT THIS DOES BONNIE PLEASE HELP
     * `getLists.py`: Extracts the lists from a text file into a python file.
 
 * `dataExtraction`: This is where the bulk of the magic happens. 
@@ -81,7 +80,13 @@ Repeat steps in the "HOW TO RUN TESTS" to run old the other version of the kerne
 
 Now that you have your data for 2 different kernel versions, it's time to get this data into a graph! 
 
-//////     BONNIE can you fill out this part?         /////// 
+After tests are ran, navigate to the `graphData` directory from the main directory. 
+
+Edit getLists.py to change the file path to the one containing all the newly generated data. 
+
+Optional: in getLists.py, edit the info array that is passed into `drawBoxPlot` to change the labels on the graph.
+
+Run python3 getLists.py and two graphs (both throughput and bandwith) will be display one after another, and they are  automatically saved under the `graphData` directory named after their titles.
 
 * This is a bullet point
 * This is another. 
