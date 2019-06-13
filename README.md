@@ -47,10 +47,11 @@ Navigate to the `dataExtraction` directory from the main directory.
 
 * First, you need to run your tests given the configuration you have currently set up. To do this, run the `FullTest.sh` file as such:
 
-`./FullTest.sh [FILE NAME] [DIRECTORY NAME]`
-
     * "File Name" is the beginning of the file name that you want your data files to have. 
     * "Dictory Name" is the dictory where you would like these files to be saved into. 
+
+`./FullTest.sh [FILE NAME] [DIRECTORY NAME]`
+
 
 Example call:
 
