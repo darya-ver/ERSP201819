@@ -23,3 +23,4 @@ the `.png` files that contain the graphs themselves.
     * `Figure 2: Bandwidth LevelDB.png`: Bandwidth graph between old and new kernel versions.
     * `displayGraph.py`: Python file that displays the graph
     * `getLists.py`: Extracts the lists from a text file into a python file.
+
