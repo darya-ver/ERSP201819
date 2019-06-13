@@ -65,7 +65,23 @@ Example call:
 
 This command will create `a.out`, the executable. To run it, simply type 
 
-`./a,out`
+`./a.out`
 
-and that should run the methods. Now you have 
+and that should run the methods. 
 
+### HOW TO SWITCH KERNEL VERSIONS
+
+//////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
+
+### HOW TO RUN TESTS pt. 2
+
+Repeat steps in the "HOW TO RUN TESTS" to run old the other version of the kernel. Make sure to put in a separate directory so that when you extra the data, it doesn't get mixed up with the first data you generated. 
+
+### HOW TO GENERATE GRAPHS
+
+Now that you have your data for 2 different kernel versions, it's time to get this data into a graph! 
+
+//////     BONNIE can you fill out this part?         /////// 
+
+* This is a bullet point
+* This is another. 
