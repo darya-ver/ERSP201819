@@ -22,5 +22,12 @@ the `.png` files that contain the graphs themselves.
     * `Figure 1: Throughput LevelDB.png`: Throughput graph between old and new kernel versions.
     * `Figure 2: Bandwidth LevelDB.png`: Bandwidth graph between old and new kernel versions.
     * `displayGraph.py`: Python file that displays the graph
+    * `displayGraph.pyc`: IDK WHAT THIS DOES BONNIE PLEASE HELP
     * `getLists.py`: Extracts the lists from a text file into a python file.
+
+* `additionalFiles`:
+
+* `dataExtraction`:
+
+* `additionalFiles`:
 
