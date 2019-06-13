@@ -1,0 +1,23 @@
+Keys:       16 bytes each
+Values:     100 bytes each (50 bytes after compression)
+Entries:    10000
+RawSize:    1.1 MB (estimated)
+FileSize:   0.6 MB (estimated)
+------------------------------------------------
+fillseq      :       3.034 micros/op;   36.5 MB/s
+fillsync     :    2159.100 micros/op;    0.1 MB/s (10 ops)
+fillrandom   :       3.137 micros/op;   35.3 MB/s
+overwrite    :       3.354 micros/op;   33.0 MB/s
+readrandom   :       0.855 micros/op; (10000 of 10000 found)
+readrandom   :       0.849 micros/op; (10000 of 10000 found)
+readseq      :       0.187 micros/op;  592.0 MB/s
+readreverse  :       1.725 micros/op;   64.1 MB/s
+compact      :   14189.000 micros/op;
+readrandom   :       1.346 micros/op; (10000 of 10000 found)
+readseq      :       0.333 micros/op;  331.9 MB/s
+readreverse  :       0.782 micros/op;  141.4 MB/s
+fill100K     :     433.800 micros/op;  219.9 MB/s (10 ops)
+crc32c       :       1.652 micros/op; 2364.4 MB/s (4K per op)
+snappycomp   :       5.402 micros/op;  723.1 MB/s (output: 55.1%)
+snappyuncomp :       0.769 micros/op; 5080.4 MB/s
+acquireload  :       0.387 micros/op; (each op is 1000 loads)

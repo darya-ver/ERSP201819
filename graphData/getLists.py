@@ -20,7 +20,7 @@ def main():
   ########################
 
   # open file
-  fp = open('../DataExtraction/pythonLists/pythonListsCurr.txt')
+  fp = open('../DataExtraction/pythonListsNewOMG.txt')
   # iterate through all lines
   for i, line in enumerate(fp.readlines() ):
 
@@ -55,7 +55,7 @@ def main():
   ########################
 
   # open file
-  fp = open('../DataExtraction/pythonLists/pythonListsOld.txt')
+  fp = open('../DataExtraction/pythonListsOldOMG.txt')
 
   # iterate through all lines
   for i, line in enumerate(fp.readlines() ):
@@ -100,8 +100,8 @@ def main():
   #drawEbar(tests, minsT, twosT, maxsT)
   
   # array of info to pass into boxplot
-  tInfo = ["Figure 1: Throughput LevelDB", "Benchmarks", "op/s (in millions)"]
-  bInfo = ["Figure 2: Bandwidth LevelDB", "Benchmarks", "MB/s"]
+  tInfo = ["Throughput LevelDB", "Benchmarks", "op/s (in millions)"]
+  bInfo = ["Bandwidth LevelDB", "Benchmarks", "MB/s"]
 
   drawBoxPlot(tests, allDataT, tInfo)
   drawBoxPlot(tests, allDataB, bInfo)
