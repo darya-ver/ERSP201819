@@ -5,24 +5,17 @@
 The first step in this project is getting an [AWS](https://lightsail.aws.amazon.com/ls/webapp/home/instances) 
 Virtual Machine.
   
-1. Create an AWS account using the link above.
-2. Create a new Lightsail instance with:
-
-    a. 16 GB RAM
-    
-    b. Latest version of ubuntu
-    
-    c. Default key for SSH 
-    
-3. 2 Ways to connect to the machine:
-
-    a. Connecting through the browser on Lightsail menu.
-    
-    b. Connecting through SSH by downloading the default key file onto your machine. Use this command in the terminal:
+* `Create an AWS account` using the link above.
+* `Create a new Lightsail` instance with:
+    * 16 GB RAM
+    * Latest version of ubuntu
+    * Default key for SSH   
+* `2 ways to connect` to the machine:
+    * `Connecting through the browser:` Navigate to your instance on the AWS menu, click connect button.
+    * `Connecting through SSH:` download the default key for your instance, and use the following command in the terminal:
     
               ssh ubuntu@[IP for your AWS instance] -i [Default key filename]
-
-4. Make sure to take "Snapshots" of your instance as a back up of the virtual machine. Use these to restore the machine in case it breaks.
+* Make sure to take `Snapshots` of your instance as a back up of the virtual machine. Use these to restore the machine in case it breaks.
 
 ### HOW TO GET THE CODE TO YOUR LOCAL DEVICE
 
