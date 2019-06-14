@@ -72,7 +72,7 @@ and that should run the methods.
 
 //////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
 
-### HOW TO RUN TESTS pt. 2
+### HOW TO RUN TESTS (pt. 2)
 
 Repeat steps in the "HOW TO RUN TESTS" to run old the other version of the kernel. Make sure to put in a separate directory so that when you extra the data, it doesn't get mixed up with the first data you generated. 
 
@@ -82,11 +82,11 @@ Now that you have your data for 2 different kernel versions, it's time to get th
 
 After tests are ran, navigate to the `graphData` directory from the main directory. 
 
-Edit getLists.py to change the file path to the one containing all the newly generated data. 
+Edit `getLists.py` to change the file path to the one containing all the newly generated data. 
 
-Optional: in getLists.py, edit the info array that is passed into `drawBoxPlot` to change the labels on the graph.
+Optional: in `getLists.py`, edit the `info` array that is passed into `drawBoxPlot` to change the labels on the graph.
 
-Run python3 getLists.py and two graphs (both throughput and bandwith) will be display one after another, and they are  automatically saved under the `graphData` directory named after their titles.
+Run `python3 getLists.py` and two graphs (both throughput and bandwith) will be display one after another, and they are  automatically saved under the `graphData` directory named after their titles.
 
-* This is a bullet point
-* This is another. 
+<!-- * This is a bullet point -->
+<!-- * This is another.  -->
