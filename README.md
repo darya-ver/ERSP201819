@@ -7,7 +7,7 @@ Virtual Machine.
   
 //////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
 1. Create an AWS account using the link above.
-2. Create a new Lightsail instance with 16GB RAM, and the latest version of Ubuntu
+2. Create a new Lightsail instance with:
     a. 16 GB RAM
     b. Latest version of ubuntu
     a. Default key for SSH 
