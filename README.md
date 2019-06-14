@@ -90,7 +90,7 @@ Now that you've ran a round of tests, switch to an older version of the kernel f
     * If version 3.16 does not come up, then it wasn't installed correctly.
 * At this point, take a `Snapshot` of your AWS instance in case anything goes wrong. 
 * Switching to another kernel version:
-    * Open the grub file using `vim /etc/default/grub`:
+    * Open the grub file using `vim /etc/default/grub`.
     * The line `GRUB_DEFAULT=0` is how the system decides what kernel version to launch. Change the "0" to the index of the kernel you want to use and exit vim. You can also use the full kernel name. 
     * Apply your changes using the command `grub-update`
 * Reboot the AWS instance through the Lightsail menu. 
