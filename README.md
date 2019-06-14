@@ -22,7 +22,7 @@ Virtual Machine.
     
               ssh ubuntu@[IP for AWS] -i [Default Key Filename]
 
-4. Make sure to take "Snapshots" of your instance as a back up of the virtual machine.
+4. Make sure to take "Snapshots" of your instance as a back up of the virtual machine. Use these to restore the machine in case it breaks.
 
 ### HOW TO GET THE CODE TO YOUR LOCAL DEVICE
 
