@@ -82,7 +82,7 @@ and that should run the methods.
 
 Now that you've ran a round of tests, switch to an older version of the kernel for a second round. 
 * Follow the first step on this [guide](http://www.berkes.ca/guides/linux_kernel.html) to download the files.
-* Use Kernel 3.16: `https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.16.63.tar.xz` instead of 2.4.19.
+    * Use Kernel 3.16: `https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.16.63.tar.xz` instead of 2.4.19.
 * Follow steps 2-6 to compile and install the kernel. 
 * Once you execute `make modules_install`, open the grub file using `vim /etc/default/grub`, and add the line `GRUB_DISABLE_SUBMENU=y` to the top.
 * Use the command `awk -F\' '/menuentry / {print $2}' /boot/grub/grub.cfg` to display all versions of the kernel on the machine. 
