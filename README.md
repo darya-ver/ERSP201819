@@ -20,7 +20,7 @@ Virtual Machine.
     
     b. Connecting through SSH by downloading the default key file onto your machine. Use this command in the terminal:
     
-              ssh ubuntu@[IP for AWS] -i [Default Key Filename]
+              ssh ubuntu@[IP for your AWS instance] -i [Default key filename]
 
 4. Make sure to take "Snapshots" of your instance as a back up of the virtual machine. Use these to restore the machine in case it breaks.
 
