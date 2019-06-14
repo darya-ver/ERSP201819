@@ -5,7 +5,6 @@
 The first step in this project is getting an [AWS](https://lightsail.aws.amazon.com/ls/webapp/home/instances) 
 Virtual Machine.
   
-//////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
 1. Create an AWS account using the link above.
 2. Create a new Lightsail instance with:
 
@@ -19,8 +18,11 @@ Virtual Machine.
 
     a. Connecting through the browser on Lightsail menu.
     
-    b. Connecting through SSH by downloading the default key onto your machine and then using the command:
-              ssh 
+    b. Connecting through SSH by downloading the default key. Use this command in the terminal:
+    
+              ssh ubuntu@[IP for AWS] -i [Default Key Filename]
+
+4. Make sure to take "Snapshots" of your instance as a back up of the virtual machine.
 
 ### HOW TO GET THE CODE TO YOUR LOCAL DEVICE
 
