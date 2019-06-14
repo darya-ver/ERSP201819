@@ -80,7 +80,22 @@ and that should run the methods.
 
 ### HOW TO SWITCH KERNEL VERSIONS
 
-//////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
+Now that you've ran a round of tests, switch to an older version of the kernel for a second round. 
+* Follow the first step on this [guide](http://www.berkes.ca/guides/linux_kernel.html) to download the files.
+* Use Kernel 3.16: `https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.16.63.tar.xz` instead of 2.4.19.
+* Follow steps 2-6 to compile and install the kernel. 
+* Once you execute `make modules_install`, open the grub file using `vim /etc/default/grub`, and add the line `GRUB_DISABLE_SUBMENU=y` to the top.
+* Use the command `awk -F\' '/menuentry / {print $2}' /boot/grub/grub.cfg` to display all versions of the kernel on the machine. 
+    * Think of this like an array that stores the names of the kernels with index [0] being the first kernel listed. 
+    * If version 3.16 does not come up, then it wasn't installed correctly.
+* At this point, take a `Snapshot` of your AWS instance in case anything goes wrong. 
+* Switching to another kernel version:
+    * Open the grub file using `vim /etc/default/grub`:
+    * The line `GRUB_DEFAULT=0` is how the system decides what kernel version to launch. Change the "0" to the index of the kernel you want to use and exit vim. You can also use the full kernel name. 
+    * Apply your changes using the command `grub-update`
+* Reboot the AWS instance through the Lightsail menu. 
+    * If the machine is unresponsive after a few minutes, then restore the snapshot of the previous version and troubleshoot.
+    * This documentation about [kernel boot parameters](https://wiki.ubuntu.com/Kernel/KernelBootParameters) might be useful. 
 
 ### HOW TO RUN TESTS (pt. 2)
 
