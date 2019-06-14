@@ -18,7 +18,7 @@ Virtual Machine.
 
     a. Connecting through the browser on Lightsail menu.
     
-    b. Connecting through SSH by downloading the default key. Use this command in the terminal:
+    b. Connecting through SSH by downloading the default key file onto your machine. Use this command in the terminal:
     
               ssh ubuntu@[IP for AWS] -i [Default Key Filename]
 
