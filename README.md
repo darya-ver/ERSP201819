@@ -8,10 +8,13 @@ Virtual Machine.
 //////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
 1. Create an AWS account using the link above.
 2. Create a new Lightsail instance with:
+
     a. 16 GB RAM
     b. Latest version of ubuntu
     c. Default key for SSH 
+    
 3. 2 Ways to connect to the machine:
+
     a. Connecting through the browser on Lightsail menu.
     b. Connecting through SSH by downloading the default key onto your machine and then using the command:
               ssh 
