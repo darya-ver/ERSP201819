@@ -6,6 +6,15 @@ The first step in this project is getting an [AWS](https://lightsail.aws.amazon.
 Virtual Machine.
   
 //////     SHAYAN PLEASE EXPLAIN THIS PART        /////// 
+1. Create an AWS account using the link above.
+2. Create a new Lightsail instance with 16GB RAM, and the latest version of Ubuntu
+    a. 16 GB RAM
+    b. Latest version of ubuntu
+    a. Default key for SSH 
+3. 2 Ways to connect to the machine:
+    a. Connecting through the browser on Lightsail menu.
+    b. Connecting through SSH by downloading the default key onto your machine and then using the command:
+              ssh 
 
 ### HOW TO GET THE CODE TO YOUR LOCAL DEVICE
 
